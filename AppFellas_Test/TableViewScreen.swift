@@ -57,6 +57,22 @@ class TableViewScreen: UITableViewController {
         return userFriends
     }
 
+    func deleteCoreData(){
+        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "FBFriends")
+        let request = NSBatchDeleteRequest(fetchRequest: fetch)
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let managedObjectContext = delegate.persistentContainer.viewContext
+        do{
+            _ = try managedObjectContext.execute(request)
+            print("ALL DELETE!!")
+            try managedObjectContext.save()
+            
+        }catch let error as NSError {
+            
+            print("Fetch failed: \(error.localizedDescription)")
+        }
+    }
+
     
     // MARK: - Table view data source
     
@@ -93,6 +109,23 @@ class TableViewScreen: UITableViewController {
             return friends.count
         }
         return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         if indexPath.section == 1{
+            print("Go logout")
+            let loginManager = FBSDKLoginManager()
+            loginManager.logOut()
+            do{
+                print("Log out from FB")
+                let loginManager = FBSDKLoginManager()
+                loginManager.logOut()
+            }
+            self.deleteCoreData()
+            let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "loginScreen") as! LoginScreen
+            self.navigationController?.pushViewController(vc, animated: true)
+
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

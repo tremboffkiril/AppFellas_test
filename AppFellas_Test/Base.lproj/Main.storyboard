@@ -107,27 +107,23 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="57.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dna-jp-Mmo">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="57.5"/>
-                                            <state key="normal" title="LOG OUT">
-                                                <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="actionLogOut:" destination="UcJ-Db-iGd" eventType="touchUpInside" id="R57-Tk-rqS"/>
-                                                <segue destination="R2B-Pi-e00" kind="show" identifier="logOut" id="dlF-u2-Bmt"/>
-                                            </connections>
-                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOG OUT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Wi-ak-AAh">
+                                            <rect key="frame" x="116" y="18" width="88" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="4Wi-ak-AAh" secondAttribute="height" multiplier="88:21" id="MYZ-2B-au4"/>
+                                                <constraint firstAttribute="width" constant="88" id="j6c-fd-h8f"/>
+                                                <constraint firstAttribute="height" constant="21" id="vUf-fn-pED"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="dna-jp-Mmo" firstAttribute="top" secondItem="dI1-EJ-1O3" secondAttribute="top" id="9GI-Uj-20f"/>
-                                        <constraint firstItem="dna-jp-Mmo" firstAttribute="leading" secondItem="dI1-EJ-1O3" secondAttribute="leading" id="JVC-92-uxq"/>
-                                        <constraint firstAttribute="trailing" secondItem="dna-jp-Mmo" secondAttribute="trailing" id="Qrb-ge-jWi"/>
-                                        <constraint firstAttribute="bottom" secondItem="dna-jp-Mmo" secondAttribute="bottom" id="kQk-eK-h70"/>
+                                        <constraint firstItem="4Wi-ak-AAh" firstAttribute="centerX" secondItem="dI1-EJ-1O3" secondAttribute="centerX" id="OaD-XN-Czd"/>
+                                        <constraint firstItem="4Wi-ak-AAh" firstAttribute="top" secondItem="dI1-EJ-1O3" secondAttribute="top" constant="18" id="cf8-tb-H3l"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="bLogout" destination="dna-jp-Mmo" id="T5o-EE-IVD"/>
-                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendsCell" rowHeight="66" id="MHa-82-dav" customClass="FriendsCell" customModule="AppFellas_Test" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="144" width="320" height="66"/>
@@ -178,7 +174,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tno-gK-S69" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="-703"/>
+            <point key="canvasLocation" x="1054" y="120"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7jX-ZG-HOF">
@@ -201,7 +197,4 @@
             <point key="canvasLocation" x="-463" y="120"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="dlF-u2-Bmt"/>
-    </inferredMetricsTieBreakers>
 </document>
