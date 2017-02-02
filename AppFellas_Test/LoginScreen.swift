@@ -62,25 +62,43 @@ class LoginScreen: UIViewController, FBSDKLoginButtonDelegate {
             if (error != nil){
                 print("Error: \(error)")
             }
-            let data1:[String:AnyObject] = result as! [String : AnyObject]
-            var name = ""
-            for friendDict in data1["data"] as! [NSDictionary]{
-                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-                let task = FBFriends(context: context)
-                let imageDict = friendDict["picture"] as! NSDictionary
-                let imageDataDict = imageDict["data"] as! NSDictionary
-                let imageURL =  imageDataDict["url"] as! String
-                name = friendDict["name"] as! String
-                task.name = name
-                task.imageUrl = imageURL
-                print(task.name!)
-                (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            if result != nil{
+                let data1:[String:AnyObject] = result as! [String : AnyObject]
+                var name = ""
+                for friendDict in data1["data"] as! [NSDictionary]{
+                    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                    let task = FBFriends(context: context)
+                    let imageDict = friendDict["picture"] as! NSDictionary
+                    let imageDataDict = imageDict["data"] as! NSDictionary
+                    let imageURL =  imageDataDict["url"] as! String
+                    name = friendDict["name"] as! String
+                    task.name = name
+                    task.imageUrl = imageURL
+                    print(task.name!)
+                    (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                    
+                    
+                    vc.dataTset = result as! [String : AnyObject]
+                }
                 
-          
-                vc.dataTset = result as! [String : AnyObject]
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else{
+            
+                let refreshAlert = UIAlertController(title: "Notification messege", message: "You didn't have any friends, contionue?", preferredStyle: UIAlertControllerStyle.alert)
+    
+                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }))
+                refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                    do{
+                        print("Log out from FB")
+                        let loginManager = FBSDKLoginManager()
+                        loginManager.logOut()
+                    }
+                }))
+                self.present(refreshAlert, animated: true, completion: nil)
             }
             
-            self.navigationController?.pushViewController(vc, animated: true)
         })
     }
     
