@@ -10,6 +10,9 @@ import UIKit
 
 class FriendsCell: UITableViewCell {
 
+    @IBOutlet weak var lFriendName: UILabel!
+    @IBOutlet weak var imFrinedAvatar: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

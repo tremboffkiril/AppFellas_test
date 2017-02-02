@@ -10,6 +10,8 @@ import UIKit
 
 class MyAccountCell: UITableViewCell {
 
+    @IBOutlet weak var lMyName: UILabel!
+    @IBOutlet weak var imMyAvatar: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
